@@ -6,6 +6,6 @@ import org.springframework.stereotype.Controller;
 public class LoginController {
 
 	public void login() {
-		System.out.println("µÇÂ¼ÈÏÖ¤");
+		System.out.println("ç™»å½•");
 	}
 }

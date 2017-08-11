@@ -40,7 +40,7 @@ public class HomeController {
 		List<User> list = userService.findAll();
 		model.addAttribute("user", list.get(1));
 		for(User user : list) {
-			System.out.println("姓名："+user.getName());
+			System.out.println("项目二姓名："+user.getName());
 		}
 		logger.info("结束调用homeController中的home方法-------");
 		return "home";
