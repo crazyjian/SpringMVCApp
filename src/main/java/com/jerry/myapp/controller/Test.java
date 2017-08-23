@@ -5,8 +5,8 @@ public class Test {
 	/**
 	 * 
 	 * @param array
-	 * @param m  x������
-	 * @param n  y������
+	 * @param m  x参数
+	 * @param n  y参数
 	 * @return
 	 */
 	public static void maze(int[][] array,int m, int n) {
