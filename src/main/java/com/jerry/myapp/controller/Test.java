@@ -12,7 +12,6 @@ public class Test {
 	public static void maze(int[][] array,int m, int n) {
 		int[][] result = new int[m][n];
 		int sum = 0;
-		for()
 	}
 	
 	

@@ -38,7 +38,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
 		List<User> list = userService.findAll();
-		model.addAttribute("user", list.get(1));
+		model.addAttribute("user", list.get(0));
 		for(User user : list) {
 			System.out.println("项目二姓名："+user.getName());
 		}
