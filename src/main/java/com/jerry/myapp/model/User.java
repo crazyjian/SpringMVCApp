@@ -2,10 +2,15 @@ package com.jerry.myapp.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class User {
     private Integer id;
 
-    private String name;
+    private String realName;
+    
+    private String userName;
 
     private String password;
 
@@ -21,12 +26,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
+    }
+    
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
