@@ -27,11 +27,36 @@
     <!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->   
 	<!-- 安全管理器 -->  
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
-		<property name="realm" ref="myRealm"></property>  
+		<property name="realm" ref="myRealm"></property>
+		  <!-- 缓存管理器 -->  
+        <property name="cacheManager" ref="shiroCacheManager"/>  
 	</bean>
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
-		<!-- shiro的安全接口，必须配置的属性 -->  
-		<property name="securityManager" ref="securityManager"></property>  
+		<!-- shiro的安全接口，必须配置的属性   权限管理器 -->  
+		<property name="securityManager" ref="securityManager"></property>
+		 <!-- 登录地址 -->   
+        <property name="loginUrl" value="/login"/>    
+        <!-- 登录后跳转到业务页面 -->  
+        <property name="successUrl" value="/success"/>    
+        <!-- 错误页面 -->  
+        <property name="unauthorizedUrl" value="/error"/>    
+        <!-- 权限配置 -->  
+        <property name="filterChainDefinitions">    
+            <value>    
+                <!-- anon无权限访问请求，此处是登录页面和登录请求 -->  
+               <!--  /login = anon -->
+                /auth = anon
+                /static/**=anon
+                /css/**=anon
+                /js/**=anon
+                <!-- 需要权限为add的用户才能访问此请求-->  
+                /user=perms[user:add]  
+                <!-- 需要管理员角色才能访问此页面 -->  
+                /user/add=roles[admin]  
+                <!--拦截非静态资源的所有请求-->    
+                /** = authc  
+            </value>    
+        </property>      
 	</bean>
 </beans>

@@ -36,6 +36,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         	SimpleAuthorizationInfo info=new SimpleAuthorizationInfo(); 
         	info.addStringPermission("admin");
         	info.addStringPermission("user");
+        	info.addRole("admin");  
         	System.out.println("开始授权");
         	return info;
         }
