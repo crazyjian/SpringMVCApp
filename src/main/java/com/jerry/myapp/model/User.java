@@ -4,6 +4,9 @@ import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
+/**
+*用户实体类
+*/
 @Repository
 public class User {
     private Integer id;
