@@ -24,5 +24,13 @@ public class UserServiceImpl implements UserService{
 	public List<User> findAll() {
 		return userMapper.findAll();
 	}
+	
+	public void deleteById(Integer id) {
+		userMapper.deleteByPrimaryKey(id);
+	}
+	
+	public User findByUserName(String name) {
+		return userMapper.selectByUserName(name);
+	}
 
 }

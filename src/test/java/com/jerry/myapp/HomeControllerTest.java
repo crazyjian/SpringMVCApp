@@ -22,7 +22,7 @@ import com.jerry.myapp.controller.HomeController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration(value = "src/main/webapp")  
-@ContextConfiguration(locations={"classpath:/spring/servlet-context.xml","classpath:/spring/root-context.xml"})
+@ContextConfiguration(locations={"classpath:/spring/servlet-context.xml","classpath:/spring/applicationContext.xml"})
 public class HomeControllerTest {
 	
 	private MockMvc mockMvc;

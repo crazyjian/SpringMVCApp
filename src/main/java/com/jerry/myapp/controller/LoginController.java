@@ -21,5 +21,6 @@ public class LoginController {
 		hm.put("a", 1);
 		hm.put("a", 2);
 		System.out.println(hm.get("a"));
+		System.out.println("登录");
 	}
 }

@@ -3,17 +3,20 @@ package com.jerry.myapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @since   Jul 24, 2017 9:08:01 PM
+ * @author  HJ
+ * @return
+ */
 public class User implements Serializable {
-    /**
-	 * @since   Jul 24, 2017 9:08:01 PM
-	 * @author  HJ
-	 * @return
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 
-    private String name;
+    private String realName;
+    
+    private String userName;
 
     private String password;
 
@@ -29,12 +32,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
+    }
+    
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
