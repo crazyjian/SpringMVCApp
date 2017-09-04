@@ -1,9 +1,17 @@
 package com.jerry.myapp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-    private Integer id;
+public class User implements Serializable {
+    /**
+	 * @since   Jul 24, 2017 9:08:01 PM
+	 * @author  HJ
+	 * @return
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String name;
 
