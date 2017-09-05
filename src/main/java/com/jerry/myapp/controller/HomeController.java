@@ -37,7 +37,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -45,6 +45,12 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		logger.info("登录用户主页");
 		return "home";
+	}
+	
+	@RequestMapping(value = "/auth", method = RequestMethod.POST)
+	public String isLogin(User User) {
+		
+		return "success";
 	}
 	
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE ,produces="application/json;charset=UTF-8")

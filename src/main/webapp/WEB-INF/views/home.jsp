@@ -35,10 +35,10 @@
     <div class="row">
     	<P>${serverTime}. </P>
         <div class="col-md-offset-3 col-md-6">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="<%=path%>/auth" method="post">
                 <span class="heading">用户登录</span>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="用户名或电子邮件">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="用户名">
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group help">
