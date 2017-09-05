@@ -8,6 +8,7 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/resources/log4j.properties=UTF-8
 encoding//src/main/resources/spring/jdbc.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/noperm.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

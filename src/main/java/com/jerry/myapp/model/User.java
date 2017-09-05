@@ -1,11 +1,17 @@
 package com.jerry.myapp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.stereotype.Repository;
+/**
+ * @since   Jul 24, 2017 9:08:01 PM
+ * @author  HJ
+ * @return
+ */
+public class User implements Serializable {
 
-@Repository
-public class User {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
 
     private String realName;
