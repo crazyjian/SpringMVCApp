@@ -39,7 +39,7 @@
         <!-- 登录后跳转到业务页面 -->  
         <property name="successUrl" value="/success"/>    
         <!-- 错误页面 -->  
-        <property name="unauthorizedUrl" value="/error"/>    
+        <property name="unauthorizedUrl" value="/unauthorized"/>    
         <!-- 权限配置 -->  
         <property name="filterChainDefinitions">    
             <value>    
@@ -52,7 +52,7 @@
                 <!-- 需要权限为add的用户才能访问此请求-->  
                 /user=perms[user:add]  
                 <!-- 需要管理员角色才能访问此页面 -->  
-                /user/add=roles[admin]  
+                /admin=roles[admin]  
                 <!--拦截非静态资源的所有请求-->    
                 /** = authc  
             </value>    

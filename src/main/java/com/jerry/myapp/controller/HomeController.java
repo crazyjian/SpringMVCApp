@@ -91,6 +91,17 @@ public class HomeController {
 		return "user";
 	}
 	
+	@RequestMapping(value = "/unauthorized")
+	public String unauthorized() {
+		return "unauthorized";
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String logout() {
+		SecurityUtils.getSubject().logout();
+		return "home";
+	}
+	
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE ,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Object deleteById(@PathVariable("id") int id) {

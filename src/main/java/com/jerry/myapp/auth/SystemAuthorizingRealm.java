@@ -34,10 +34,9 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         if(user!=null) {
         	//权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）  
         	SimpleAuthorizationInfo info=new SimpleAuthorizationInfo(); 
-        	info.addStringPermission("admin");
-        	info.addStringPermission("user");
+        	//info.addStringPermission("user:add");
         	info.addRole("admin");  
-        	System.out.println("开始授权");
+        	System.out.println("授权成功");
         	return info;
         }
 		return null;
@@ -59,6 +58,18 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
             return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), getName());  
         }  
         return null;
+        
+        
+     /*   String username = (String)token.getPrincipal();  //得到用户名  
+        String password = new String((char[])token.getCredentials()); //得到密码  
+        if(!"zhang".equals(username)) {  
+            throw new UnknownAccountException(); //如果用户名错误  
+        }  
+        if(!"123".equals(password)) {  
+            throw new IncorrectCredentialsException(); //如果密码错误  
+        }  
+        //如果身份认证验证成功，返回一个AuthenticationInfo实现；  
+        return new SimpleAuthenticationInfo(username, password, getName()); */
 	}
 
 }

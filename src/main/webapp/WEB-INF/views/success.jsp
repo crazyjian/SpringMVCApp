@@ -16,15 +16,18 @@
 Welcome!  <shiro:principal/>  
     <br><br>  
       
-    <shiro:hasPermission name="user">  
-        <a href="<%=path %>/user">User Page</a>  
-    </shiro:hasPermission>  
-      
+    <shiro:hasRole name="admin">  
+        <a href="<%=path %>/user">User Page（有admin角色才能看到此处，有user:add权限才能点击进入）</a>  
+    </shiro:hasRole>  
     <br><br>  
       
-    <shiro:hasAnyRoles name="admin">  
-        <a href="<%=path %>/admin">Admin Page</a>  
-    </shiro:hasAnyRoles>  
+<%--     <shiro:hasPermission name="user:add">   
+        <a href="<%=path %>/admin">User Page（有admin角色才能看到此处）</a>  
+     </shiro:hasPermission>   
+    <br><br>   --%>
+    <a href="<%=path %>/user">User Page（有user:add权限才能点击进入）</a>  
+    <br><br>  
+    <a href="<%=path %>/logout">退出</a> 
        
 </body>
 </html>
