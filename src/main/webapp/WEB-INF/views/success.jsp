@@ -25,7 +25,7 @@ Welcome!  <shiro:principal/>
         <a href="<%=path %>/admin">User Page（有admin角色才能看到此处）</a>  
      </shiro:hasPermission>   
     <br><br>   --%>
-    <a href="<%=path %>/user">User Page（有user:add权限才能点击进入）</a>  
+<%--     <a href="<%=path %>/user">User Page（有user:add权限才能点击进入）</a>   --%>
     <br><br>  
     <a href="<%=path %>/logout">退出</a> 
        

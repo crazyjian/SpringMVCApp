@@ -1,5 +1,6 @@
 package com.jerry.myapp.controller;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,6 +42,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RedisTemplate<Serializable, Serializable> redisTemplate; 
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -88,6 +93,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "/user")
 	public String user() {
+		redisTemplate.opsForValue().set("name", "测试");
+		String name = (String) redisTemplate.opsForValue().get("name");
+		System.out.println(name);
 		return "user";
 	}
 	

@@ -4,25 +4,41 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	
+	<!-- 第一种方法 -->
 	 <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="jobClass" value="com.jerry.myapp.job.TestJob"></property>
         <property name="durability" value="true"></property>
     </bean>
-
-    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
-        <property name="jobDetail" ref="jobDetail" />
-        <property name="startDelay" value="3000" />
-        <property name="repeatInterval" value="2000" />
+    
+        <!-- 第二种方式 -->
+        <!-- 将需要执行的定时任务注入JOB中。 -->
+    <bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="testJob2"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="doSomething"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
     </bean>
+
+   <!--  <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="testJob" />
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="3000" />
+    </bean> -->
+    
+    <bean id="cronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+    	<property name="jobDetail" ref="jobDetail" />  
+   		<property name="cronExpression" value="0/2 * * ? * *" />  
+	</bean>
 
     <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
     <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <!-- 管理trigger -->
         <property name="triggers">
             <list>
-                <ref bean="simpleTrigger" />
+                <ref bean="cronTrigger" />
             </list>
         </property>
     </bean>
+    
 </beans>
