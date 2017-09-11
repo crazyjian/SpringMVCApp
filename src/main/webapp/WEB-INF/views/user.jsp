@@ -12,6 +12,9 @@
 	<title>Home</title>
 </head>
 <body>
-用户页面
+用户页面<br>
+	<c:forEach items="${userList}" var="user" varStatus="status">
+	     姓名：${user.realName } <br>
+	</c:forEach>
 </body>
 </html>

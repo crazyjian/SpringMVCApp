@@ -92,10 +92,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/user")
-	public String user() {
-		redisTemplate.opsForValue().set("name", "测试");
-		String name = (String) redisTemplate.opsForValue().get("name");
-		System.out.println(name);
+	public String user(Model model) {
+		List<User> list = userService.findAll();
+		for(User user : list) {
+			logger.info(user.getRealName());
+		}
+		model.addAttribute("userList", list);
 		return "user";
 	}
 	
