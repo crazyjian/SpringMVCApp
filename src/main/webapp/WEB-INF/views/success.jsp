@@ -21,9 +21,10 @@ Welcome!  <shiro:principal/>
     </shiro:hasRole>  
     <br><br>  
     
-    <a href="<%=path%>/chat/chatPage">在线聊天()普通轮询ajax方式</a><br><br>
-    <a href="<%=path%>/chat/chatPage1">在线聊天()普通轮询iframe方式</a><br>
-    <a href="<%=path%>/chat/chatPage2">在线聊天()长连接ajax方式</a><br>
+    <a href="<%=path%>/chat/chatPage">普通轮询ajax方式</a><br><br>
+    <a href="<%=path%>/chat/chatPage1">普通轮询iframe方式</a><br><br>
+    <a href="<%=path%>/chat/chatPage2">长连接ajax方式</a><br><br>
+    <a href="<%=path%>/chat/webChatPage">在线聊天</a><br><br>
     
       
 <%--     <shiro:hasPermission name="user:add">   

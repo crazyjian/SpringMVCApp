@@ -61,4 +61,13 @@ public class ChatController {
 	     }
 	}
 	
+	
+	/**
+	 * web聊天页面
+	 * @return
+	 */
+	@RequestMapping(value = "/webChatPage")
+	public String webChatPage() {
+		return prefix+"webChatPage";
+	}
 }

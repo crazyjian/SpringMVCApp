@@ -11,6 +11,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
@@ -19,6 +20,8 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +72,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/auth", method = RequestMethod.POST)
 	public String isAuth(HttpServletRequest request,Model model,@ModelAttribute User user,
-			@RequestParam(value = "check", required = false) String check) {
+			@RequestParam(value = "check", required = false) String check,
+			HttpSession session) {
 		String username = request.getParameter("userName");  
 	    String password = request.getParameter("password"); 
 		 // 组装token，包括客户公司名称、简称、客户编号、用户名称；密码  
@@ -92,7 +96,9 @@ public class HomeController {
 	        ex.printStackTrace();  
 	        model.addAttribute("msg", "内部错误，请重试！");
 	        return "home";  
-	    }  
+	    }
+	    User currentUser = userService.findByUserName(username);
+	    session.setAttribute("user", currentUser);
 		return "success";
 	}
 	
