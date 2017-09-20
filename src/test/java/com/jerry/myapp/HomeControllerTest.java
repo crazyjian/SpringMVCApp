@@ -37,7 +37,7 @@ public class HomeControllerTest {
 
 	@Test
 	public void testHome() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpect(MockMvcResultMatchers.view().name("home"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/login")).andExpect(MockMvcResultMatchers.view().name("home"));
 	}
 
 }

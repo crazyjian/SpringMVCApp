@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <div class="main-checkbox">
-                        <input type="checkbox" value="None" id="checkbox1" name="check"/>
+                        <input type="checkbox" value="no" id="checkbox1" name="check"/>
                         <label for="checkbox1"></label>
                     </div>
                     <span class="text">Remember me</span>
@@ -62,8 +62,18 @@
 
 <script type="text/javascript">
     var msg = '${msg}';
-    if(msg!="")
+    if(msg!="") {
     	alert(msg);
+    }
+
+   $('#checkbox1').click(function(){
+	   	if($('#checkbox1').is(':checked')) {
+	   		$('#checkbox1').val("yes");
+	   	}else {
+	   		$('#checkbox1').val("no");
+	   	}
+   });
+        
 	<%-- function deleteById() {
 		var id = ${user.id};
 		$.ajax({

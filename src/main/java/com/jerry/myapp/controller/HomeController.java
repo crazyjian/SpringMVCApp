@@ -1,12 +1,16 @@
 package com.jerry.myapp.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
@@ -48,10 +52,12 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -62,12 +68,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/auth", method = RequestMethod.POST)
-	public String isAuth(HttpServletRequest request,Model model,@ModelAttribute User user) {
+	public String isAuth(HttpServletRequest request,Model model,@ModelAttribute User user,
+			@RequestParam(value = "check", required = false) String check) {
 		String username = request.getParameter("userName");  
 	    String password = request.getParameter("password"); 
 		 // 组装token，包括客户公司名称、简称、客户编号、用户名称；密码  
-	    UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
-	    token.setRememberMe(true); 
+	    UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+	    if("yes".equals(check))
+	    	token.setRememberMe(true); 
+	    else
+	    	token.setRememberMe(false); 
 	    try {
 	    System.out.println("对用户[" + username + "]进行登录验证..验证开始"); 
 		SecurityUtils.getSubject().login(token);

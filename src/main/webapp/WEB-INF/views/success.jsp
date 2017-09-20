@@ -20,6 +20,11 @@ Welcome!  <shiro:principal/>
         <a href="<%=path %>/user">User Page（有admin角色才能看到此处，有user:add权限才能点击进入）</a>  
     </shiro:hasRole>  
     <br><br>  
+    
+    <a href="<%=path%>/chat/chatPage">在线聊天()普通轮询ajax方式</a><br><br>
+    <a href="<%=path%>/chat/chatPage1">在线聊天()普通轮询iframe方式</a><br>
+    <a href="<%=path%>/chat/chatPage2">在线聊天()长连接ajax方式</a><br>
+    
       
 <%--     <shiro:hasPermission name="user:add">   
         <a href="<%=path %>/admin">User Page（有admin角色才能看到此处）</a>  
