@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>Java后端WebSocket的Tomcat实现</title>
+	<script src="${rc.contextPath}/js/jquery.js"></script>
 </head>
 <body>
 	Welcome ${user.realName}<br/>
@@ -53,6 +54,7 @@
 	//发送消息
 	function send() {
 		var message = document.getElementById('text').value;
+		$("#text").val("");
 		websocket.send("${user.realName}："+message);
 	}
 </script>
