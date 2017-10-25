@@ -25,6 +25,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -48,12 +49,17 @@ import com.jerry.myapp.service.UserService;
 public class HomeController {
 	
 	@Autowired
+	@Qualifier("userService")
 	private UserService userService;
 	
 	@Autowired
 	private RedisTemplate<Serializable, Serializable> redisTemplate; 
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	static {
+		System.out.println("初始化userService----------------------------------------------------");
+	}
 	
 	
 	
@@ -66,7 +72,6 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
-		logger.info("登录用户主页");
 		return "home";
 	}
 	
@@ -107,16 +112,6 @@ public class HomeController {
 		return "admin";
 	}
 	
-	@RequestMapping(value = "/user")
-	public String user(Model model) {
-		List<User> list = userService.findAll();
-		for(User user : list) {
-			logger.info(user.getRealName());
-		}
-		model.addAttribute("userList", list);
-		return "user";
-	}
-	
 	@RequestMapping(value = "/unauthorized")
 	public String unauthorized() {
 		return "unauthorized";
@@ -126,19 +121,6 @@ public class HomeController {
 	public String logout() {
 		SecurityUtils.getSubject().logout();
 		return "home";
-	}
-	
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE ,produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public Object deleteById(@PathVariable("id") int id) {
-		JSONObject jsonObject = new JSONObject();
-		try {
-			userService.deleteById(id);
-			jsonObject.put("msg", "删除人员信息成功");
-		}catch(Exception e) {
-			jsonObject.put("msg", "删除人员信息失败");
-		}
-		return jsonObject;
 	}
 	
 }

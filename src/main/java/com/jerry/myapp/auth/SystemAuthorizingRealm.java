@@ -36,10 +36,11 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         User user=userService.findByUserName(loginName);  
         if(user!=null) {
         	//权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）  
+        	System.out.println("-----对用户["+user.getUserName()+"]授权开始----");
         	SimpleAuthorizationInfo info=new SimpleAuthorizationInfo(); 
         	info.addStringPermission("user:add");
         	info.addRole("admin");  
-        	System.out.println("授权成功");
+        	System.out.println("-----对用户["+user.getUserName()+"]授权成功----");
         	return info;
         }
 		return null;
