@@ -1,5 +1,6 @@
 package com.jerry.myapp.controller;
 
+import java.lang.reflect.Proxy;
 import java.util.List;
 
 import net.sf.json.JSONObject;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jerry.myapp.model.User;
+import com.jerry.myapp.proxy.MyInvocationHandler;
 import com.jerry.myapp.service.UserService;
+import com.jerry.myapp.service.impl.UserServiceImpl;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -34,10 +37,12 @@ public class UserController {
 	public String user(Model model) {
 		List<User> list = userService.findAll();
 		for(User user : list) {
-			logger.info(user.getRealName());
+			logger.info("用户姓名："+user.getRealName());
 		}
 		model.addAttribute("userList", list);
-		add();
+		User user = userService.findById(1);
+		user.setRealName("service1");
+		userService.update(user);
 		return "user";
 	}
 	
@@ -54,11 +59,4 @@ public class UserController {
 		return jsonObject;
 	}
 	
-	public void add() {
-		User user = new User();
-		user.setId(4);
-		user.setRealName("测试111");
-		userService.insert(user);
-	}
-
 }

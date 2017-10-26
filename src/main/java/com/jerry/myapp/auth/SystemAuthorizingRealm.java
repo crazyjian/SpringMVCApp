@@ -12,9 +12,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jerry.myapp.controller.HomeController;
 import com.jerry.myapp.model.User;
 import com.jerry.myapp.service.UserService;
 
@@ -22,6 +25,8 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 	
 	@Autowired
 	private UserService userService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(SystemAuthorizingRealm.class);
 
 	/**
 	 * 权限认证
@@ -36,11 +41,11 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         User user=userService.findByUserName(loginName);  
         if(user!=null) {
         	//权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）  
-        	System.out.println("-----对用户["+user.getUserName()+"]授权开始----");
+        	logger.info("-----对用户["+user.getUserName()+"]授权开始----");
         	SimpleAuthorizationInfo info=new SimpleAuthorizationInfo(); 
         	info.addStringPermission("user:add");
         	info.addRole("admin");  
-        	System.out.println("-----对用户["+user.getUserName()+"]授权成功----");
+        	logger.info("-----对用户["+user.getUserName()+"]授权成功----");
         	return info;
         }
 		return null;

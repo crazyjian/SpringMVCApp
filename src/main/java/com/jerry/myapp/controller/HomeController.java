@@ -57,12 +57,6 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	static {
-		System.out.println("初始化userService----------------------------------------------------");
-	}
-	
-	
-	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -88,9 +82,9 @@ public class HomeController {
 	    else
 	    	token.setRememberMe(false); 
 	    try {
-	    System.out.println("对用户[" + username + "]进行登录验证..验证开始"); 
+	    logger.info("对用户[" + username + "]进行登录验证..验证开始"); 
 		SecurityUtils.getSubject().login(token);
-		System.out.println("对用户[" + username + "]进行登录验证..验证通过");
+		logger.info("对用户[" + username + "]进行登录验证..验证通过");
 	    }catch (UnknownAccountException ex) {
 	    	model.addAttribute("msg", "用户不存在");
 	        return "home";  

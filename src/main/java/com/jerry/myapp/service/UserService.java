@@ -16,5 +16,5 @@ public interface UserService {
 	
 	public void insert(User user);
 	
-	public void insert2(User user);
+	public void update(User user);
 }

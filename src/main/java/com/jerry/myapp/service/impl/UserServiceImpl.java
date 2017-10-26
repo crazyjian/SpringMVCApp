@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,22 +43,18 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
 	public void insert(User user) {
 		// TODO Auto-generated method stub
-		
 		userMapper.insert(user);
-		user.setId(6);
-		user2Service.insert2(user);
-		
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public void insert2(User user) {
+	public void update(User user) {
 		// TODO Auto-generated method stub
-		userMapper.insert(user);
-		
+		//userMapper.updateByPrimaryKey(user);
+		User user1 = findById(2);
+		User user2 = findByUserName("jim");
+		System.out.println("dd");
 	}
 
 }
