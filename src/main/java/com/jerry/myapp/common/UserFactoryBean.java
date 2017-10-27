@@ -16,7 +16,7 @@ public class UserFactoryBean implements FactoryBean<User>,InitializingBean {
 		// TODO Auto-generated method stub
 		User user = new User();
 		user.setId(1);
-		user.setUserName("jerry");
+		user.setUserName("UserFactoryBean");
 		return user;
 	}
 

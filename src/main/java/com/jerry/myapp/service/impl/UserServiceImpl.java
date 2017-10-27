@@ -51,10 +51,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
-		//userMapper.updateByPrimaryKey(user);
-		User user1 = findById(2);
-		User user2 = findByUserName("jim");
-		System.out.println("dd");
+		userMapper.updateByPrimaryKey(user);
+		int i = 1/0;
 	}
 
 }

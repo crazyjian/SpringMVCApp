@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
+import com.jerry.myapp.common.UserFactoryBean;
 import com.jerry.myapp.model.User;
 import com.jerry.myapp.proxy.MyInvocationHandler;
 import com.jerry.myapp.service.UserService;
@@ -40,9 +43,11 @@ public class UserController {
 			logger.info("用户姓名："+user.getRealName());
 		}
 		model.addAttribute("userList", list);
-		User user = userService.findById(1);
-		user.setRealName("service1");
-		userService.update(user);
+		//WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+		//User u = webApplicationContext.getBean("userFactoryBean",User.class);
+		User u = list.get(1);
+		u.setPassword("5555");
+		userService.update(u);
 		return "user";
 	}
 	
