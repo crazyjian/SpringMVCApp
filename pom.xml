@@ -376,5 +376,7 @@
                 <filtering>true</filtering>  
             </resource>
    		 </resources>
+   		 
+   		  <finalName>myapp</finalName>
     </build>
 </project>
