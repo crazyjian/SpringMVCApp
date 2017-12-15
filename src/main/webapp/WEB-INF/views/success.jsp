@@ -26,6 +26,7 @@ Welcome!  <shiro:principal/>
     <a href="<%=path%>/chat/chatPage2">长连接ajax方式</a><br><br>
     <a href="<%=path%>/chat/webChatPage">在线聊天</a><br><br>
     <a href="<%=path%>/chat/webChatPage">事务测试</a><br><br>
+    <a href="<%=path%>/redis/test">redis测试</a><br><br>
     
       
 <%--     <shiro:hasPermission name="user:add">   

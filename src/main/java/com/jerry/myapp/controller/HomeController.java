@@ -3,6 +3,7 @@ package com.jerry.myapp.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +39,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jerry.myapp.common.Md5Util;
 import com.jerry.myapp.common.UserFactoryBean;
 import com.jerry.myapp.model.User;
 import com.jerry.myapp.service.UserService;
@@ -66,6 +68,8 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		
+		System.out.println("------------------项目一-----------------");
 		return "home";
 	}
 	
@@ -74,9 +78,10 @@ public class HomeController {
 			@RequestParam(value = "check", required = false) String check,
 			HttpSession session) {
 		String username = request.getParameter("userName");  
-	    String password = request.getParameter("password"); 
+	    String password = request.getParameter("password");
+	    String Md5password = Md5Util.EncoderByMd5(password);
 		 // 组装token，包括客户公司名称、简称、客户编号、用户名称；密码  
-	    UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+	    UsernamePasswordToken token = new UsernamePasswordToken(username, Md5password);
 	    if("yes".equals(check))
 	    	token.setRememberMe(true); 
 	    else
